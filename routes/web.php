@@ -102,3 +102,7 @@ Route::get('/basket/success', [\App\Http\Controllers\OrderController::class, 'su
 
 # ПИСЬМО НА ПОЧТУ
 Route::get('/send/{id}',[\App\Http\Controllers\MailController::class, 'send'])->name('send_mail');
+
+# ЧАТ БОТИК
+Route::match(['get', 'post'], '/botman', [\App\Http\Controllers\BotmanController::class,'handle']);
+

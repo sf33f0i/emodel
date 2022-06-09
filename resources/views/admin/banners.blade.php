@@ -34,7 +34,6 @@
                     @include('admin.modal.update_banner')
                 </div>
             </td>
-
         </tr>
         @endforeach
         </tbody>

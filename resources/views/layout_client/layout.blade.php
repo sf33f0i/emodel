@@ -25,5 +25,18 @@
         @yield('content')
         @include('user.inc.footer')
     </div>
+
+    <script>
+        var botmanWidget = {
+            aboutText: 'напишите что нибудь здесь',
+            introMessage: "Здравствуйте, чем могу быть полезен?" +
+                "Вы можете узнать такую информацию как:" +
+                "  <br> -Время работы"+"" +
+                "  <br> -Доставка" +
+                "  <br> -Контакты"
+        };
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 </body>
 </html>
