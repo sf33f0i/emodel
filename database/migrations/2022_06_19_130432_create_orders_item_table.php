@@ -18,7 +18,7 @@ class CreateOrdersItemTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('product_id')->unsigned()->nullable();
             $table->integer('quantity')->default(1);
-
+            $table ->integer('option')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')

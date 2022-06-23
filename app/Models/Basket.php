@@ -15,14 +15,16 @@ class Basket extends Model
         'session_id',
         'product_id',
         'price',
+        'option',
         'quantity',
     ];
 
-    public function add($product_id)
+    public function add($product_id, $request)
     {
+
         $product = Product::findOrFail($product_id);
 
-        if ($basket = self::where(["session_id" => session()->getId(), 'product_id' => $product->id])->first()) {
+        if ($basket = self::where(["session_id" => session()->getId(), 'product_id' => $product->id, 'option'=>$request['radio']])->first()) {
             $basket->quantity++;
             $basket->save();
         } else {
@@ -32,13 +34,22 @@ class Basket extends Model
             $basket = self::create([
                 'session_id' => session()->getId(),
                 'product_id' => $product->id,
+                'option'=>$request['radio'],
                 'quantity' => 1,
                 'price' => $product->price,
             ]);
         }
         return $basket;
     }
+    public function option($id){
+        $product = Product::find($id->product_id)->images->where('type', 1)->firstWhere('number', $id->option);
+        if(isset($product)) {
+            return $product->image;
+        }else{
+            return '';
+        }
 
+    }
     public function count()
     {
         return self::where(['session_id' => session()->getId()])->sum('quantity');

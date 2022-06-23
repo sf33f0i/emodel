@@ -25,6 +25,18 @@ function count_product($width, $name_param,$products)
         <div class="filter">
             <div class="filter_content">
                 <div class="filter_text">
+                    <a class="clear_filter" href="{{route('catalog')}}">Сбросить фильтрацию</a>
+                </div>
+                <div class="filter_text">
+                    <span class="filter_component_name">Тип</span>
+                    @foreach($types as $type)
+                        <a href="{{\App\Models\Order::filter_add('type', $type)}}" class="filter_components"
+                           @if(isset($_GET['type'])) @if($_GET['type']==$type) style="color: red" @endif @endif>{{$type}}
+                            ({{count_product($type, 'type',$products)}})
+                        </a>
+                    @endforeach
+                </div>
+                <div class="filter_text">
                     <span class="filter_component_name">{{$floor[0]->name}}</span>
                     @foreach($floor as $component)
                         <a href="{{\App\Models\Order::filter_add('materials', $component->id)}}" class="filter_components"
@@ -61,9 +73,6 @@ function count_product($width, $name_param,$products)
                             ({{count_product($visota, 'height',$products)}})
                         </a>
                     @endforeach
-                </div>
-                <div class="filter_text">
-                    <a class="clear_filter" href="{{route('catalog')}}">Сбросить</a>
                 </div>
                 <div style="width: 100%; height: 30px">
                 </div>
@@ -110,6 +119,9 @@ function count_product($width, $name_param,$products)
                                         </div>
                                         <form method="POST" action="{{route('add_basket', $product->id)}}">
                                             @csrf
+                                            @if($product->images->where('type',1)->count()!=0)
+                                                <input type="hidden" name="radio" value="1">
+                                            @endif
                                             <button type="submit" class="in_basket">В корзину</button>
                                         </form>
                                     </div>

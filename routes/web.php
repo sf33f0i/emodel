@@ -58,13 +58,24 @@ Route::group(['middleware' => ['auth', 'isadmin']], function(){
         Route::post('/slider/create', [\App\Http\Controllers\BannerController::class, 'create'])->name('create_banner');
         Route::patch('/slider/update/{id}', [\App\Http\Controllers\BannerController::class,'update'])->name('update_banner');
         Route::delete('/slider/delete/{id}',[\App\Http\Controllers\BannerController::class, 'delete'])->name('delete_banner');
-
+        # Наши работы
+        Route::get('/works', function (){
+            $images= \App\Models\Works::all();
+            return view('admin.works', compact('images'));
+        })->name('works');
+        Route::post('/works/create', [\App\Http\Controllers\WorksController::class, 'create'])->name('create_works');
+        Route::delete('/works/delete/{id}', [\App\Http\Controllers\WorksController::class, 'delete'])->name('delete_works');
+        #Статистика
+        Route::get('/statistics', [\App\Http\Controllers\StatisticsController::class, 'show'])->name('statistics');
         # ЗАКАЗЫ
         Route::get('/orders',[\App\Http\Controllers\OrderController::class, 'index'])
         ->name('orders');
         Route::get('/order/{order}',[\App\Http\Controllers\OrderController::class, 'order_card'])->name('order_card');
         Route::post('/order/update/status/{id}',[\App\Http\Controllers\OrderController::class, 'update_status'])->name('status_update');
         Route::get('/order/search',[\App\Http\Controllers\OrderController::class, 'query'])->name('admin_typehead');
+
+        # СООБЩЕНИЯ
+        Route::get('/messages', [\App\Http\Controllers\MessageController::class, 'show'])->name('messages');
 
 
 });
@@ -99,10 +110,23 @@ Route::get('/order', function (){
 })->name('order');
 Route::post('/order/arrange', [\App\Http\Controllers\OrderController::class, 'create'])->name('create_order');
 Route::get('/basket/success', [\App\Http\Controllers\OrderController::class, 'success'])->name('done_order');
-
+# Контакты
+Route::get('/ourWorks', function (){
+    $images = \App\Models\Works::all();
+    return view('user.works', compact('images'));
+})->name('ourWorks');
+Route::get('/contacts', function (){
+    return view('user.contact');
+})->name('contacts');
 # ПИСЬМО НА ПОЧТУ
 Route::get('/send/{id}',[\App\Http\Controllers\MailController::class, 'send'])->name('send_mail');
 
 # ЧАТ БОТИК
 Route::match(['get', 'post'], '/botman', [\App\Http\Controllers\BotmanController::class,'handle']);
 
+# СООБЩЕНИЯ
+Route::post('/message', [\App\Http\Controllers\MessageController::class, 'create'])->name('message');
+
+Route::get('/test', function (){
+    return view('test');
+});

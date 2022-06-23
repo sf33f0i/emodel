@@ -32,6 +32,7 @@ class OrderController extends Controller
             $order->products_order()->create([
                 'product_id' => $product->product_card->id,
                 'quantity' => $product->quantity,
+                'option'=> $product->option
             ]);
         }
         $request->flash();

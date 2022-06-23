@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -15,18 +16,9 @@ class ProductController extends Controller
     {
         $arr = $request->toArray();
         unset($arr['_token']);
-        $arr['image'] = $request->file('image')->store('uploads', 'public');
+        $arr['image'] = $request->file('image')->store('products', 'public');
         $product = Product::create($arr);
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $images = $image->store('uploads', 'public');
 
-                ImageProduct::create([
-                    'image' => $images,
-                    'product_id' => $product->id,
-                ]);
-            }
-        }
         return redirect(route('adminProducts_all'))->with('success', 'Продукт был успешно добавлен');
     }
 
@@ -50,7 +42,7 @@ class ProductController extends Controller
             'image' => 'sometimes',
         ]);
         if (array_key_exists('image', $validation)) {
-            $validation['image'] = $request->file('image')->store('uploads', 'public');
+            $validation['image'] = $request->file('image')->store('products', 'public');
         }
         $id->update($validation);
         return redirect(route('adminProducts_all'))->with('success', "Продукт успешно изменен!");
@@ -77,13 +69,38 @@ class ProductController extends Controller
 
     public function image_add(Request $request, Product $id)
     {
-        foreach ($request->file('images') as $image) {
-            $images = $image->store('uploads', 'public');
+        if ($request->has('images')) {
+            $images = $request->file('images')->store('products', 'public');
 
-            ImageProduct::create([
-                'image' => $images,
-                'product_id' => $id->id,
-            ]);
+                ImageProduct::create([
+                    'name' => 'Вариант ',
+                    'number'=> $request->number,
+                    'image' => $images,
+                    'product_id' => $id->id,
+                    'type' => 1
+                ]);
+        }
+        if ($request->has('scheme')) {
+                $images = $request->file('scheme')->store('products', 'public');
+
+                ImageProduct::create([
+                    'name' => "Схема",
+                    'image' => $images,
+                    'product_id' => $id->id,
+                    'type' => 0
+                ]);
+        }
+        if ($request->has('addendum')) {
+            foreach ($request->file('addendum') as $image) {
+                $images = $image->store('products', 'public');
+
+                ImageProduct::create([
+                    'name' => 'Доп. изображение',
+                    'image' => $images,
+                    'product_id' => $id->id,
+                    'type' => 2
+                ]);
+            }
         }
         return redirect(route('adminProducts_all'));
 
@@ -91,7 +108,8 @@ class ProductController extends Controller
 
     public function image_delete(Request $request, ImageProduct $id)
     {
-        $id-> delete();
+        Storage::delete('public/'.$id->image);
+        $id->delete();
         return redirect(route('adminProducts_all'));
 
     }

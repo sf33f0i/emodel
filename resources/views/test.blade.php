@@ -7,7 +7,7 @@
             </div>
             <div class="text_done_and_button">
                 <span style="font-family: 'Montserrat',serif;font-size: 48px"> Заказ успешно оформлен!</span>
-                <span style="margin-top: 26px"> Номер вашего заказа <span style="font-weight: 600">{{$order->id}}</span></span>
+                <span style="margin-top: 26px"> Номер вашего заказа <span style="font-weight: 600"></span></span>
                 <span style="margin-top: 26px;line-height: 150%;"> Информация  выслана на ваш e-mail, указаный при фофрмлении заказа</span></span>
             </div>
             <a href="{{route('home_client')}}" style="text-decoration: none;color: black;background: #FFFFFF;border: none;width: 208px;height: 50px;margin-bottom: 70px;margin-top: 50px;display: flex;justify-content: center;align-items: center;font-size: 20px;font-family: 'Montserrat',serif;">Вернуться</a>

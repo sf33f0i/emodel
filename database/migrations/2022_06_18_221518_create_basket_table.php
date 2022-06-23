@@ -19,6 +19,7 @@ class CreateBasketTable extends Migration
             $table->string('session_id');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('option')->nullable();
 
             $table->double('price', 12 , 2);
             $table->integer('quantity')->default(1);

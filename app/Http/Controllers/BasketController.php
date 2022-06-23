@@ -15,9 +15,9 @@ class BasketController extends Controller
         return view('user.basket', compact('basket'));
     }
 
-    public function add($product_id)
+    public function add(Request $request ,$product_id)
     {
-        Basket::add($product_id);
+        Basket::add($product_id, $request);
         return redirect(route('catalog'));
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesProductTable extends Migration
+class CreateWorksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateImagesProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('images_product', function (Blueprint $table) {
+        Schema::create('works', function (Blueprint $table) {
             $table->id();
-
-            $table->text('image')->nullable('false');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-
+            $table->text('image');
+            $table->string('option');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateImagesProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images_product');
+        Schema::dropIfExists('works');
     }
 }

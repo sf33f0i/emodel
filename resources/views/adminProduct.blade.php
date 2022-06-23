@@ -15,8 +15,8 @@
             <th scope="col">Наименование</th>
             <th scope="col">Цена</th>
             <th scope="col">Тип</th>
+            <th scope="col">Длина</th>
             <th scope="col">Ширина</th>
-            <th scope="col">Высота</th>
             <th scope="col">Скидочная цена</th>
             <th scope="col">Компоненты</th>
             <th scope="col">Доп изображения</th>

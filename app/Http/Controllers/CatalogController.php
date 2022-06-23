@@ -20,7 +20,8 @@ class CatalogController extends Controller
         $insulation= Components::query()->where('name','=','Утепление')->get();
         $width= Product::query()->pluck('width')->unique();
         $height = Product::query()->pluck('height')->unique();
-        return view('user.catalog', compact('products','floor','insulation','width','height'));
+        $types = Product::query()->pluck('type')->unique();
+        return view('user.catalog', compact('products','floor','insulation','width','height','types'));
     }
     public function query(Request $request){
         $data = $request->all();

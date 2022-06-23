@@ -11,9 +11,10 @@
          </form>
          <select class="select_catalog" onchange="window.location.href = this.options[this.selectedIndex].value">
              <option value="{{route('orders')}}">Все заказы</option>
-             <option value="{{\App\Models\Order::filter_add('status', 0)}}" @if(isset($_GET['status'])) @if($_GET['status']==0) selected @endif @endif>В процессе</option>
-             <option value="{{\App\Models\Order::filter_add('status', 1)}}"@if(isset($_GET['status'])) @if($_GET['status']==1) selected @endif @endif>Готовые</option>
-             <option value="{{\App\Models\Order::filter_add('status', 2)}}"@if(isset($_GET['status'])) @if($_GET['status']==2) selected @endif @endif>Требуют подверждения</option>
+             <option value="{{\App\Models\Order::filter_add('status', 0)}}" @if(isset($_GET['status'])) @if($_GET['status']==0) selected @endif @endif>Ожидает сборки</option>
+             <option value="{{\App\Models\Order::filter_add('status', 1)}}" @if(isset($_GET['status'])) @if($_GET['status']==1) selected @endif @endif>В процессе сборки</option>
+             <option value="{{\App\Models\Order::filter_add('status', 2)}}"@if(isset($_GET['status'])) @if($_GET['status']==2) selected @endif @endif>Доставка</option>
+             <option value="{{\App\Models\Order::filter_add('status', 3)}}"@if(isset($_GET['status'])) @if($_GET['status']==3) selected @endif @endif>Готово</option>
          </select>
      </div>
      <div class="order_table">
@@ -36,14 +37,18 @@
                  <th scope="row">{{$order->id}}</th>
                  <td>{{$order->name}} {{$order->surname}}</td>
                  <td>{{$order->email}}</td>
-                 <td>{{$order->country}}, {{$order->region}},{{$order->city}}</td>
+                 <td>{{$order->country}}, {{$order->region}},{{$order->city}}, {{$order->address}}</td>
                  <td>{{$order->phone}}</td>
                  <td>{{number_format($order->amount, 0, ',', ' ')}} ₽</td>
                  <td>
                      @if($order->status == 0)
-                         <div>В процессе</div>
+                            <div>Ожидает сборки</div>
                          @elseif($order->status == 1)
-                         <div>Готов</div>
+                            <div>В процессе сборки</div>
+                        @elseif($order->status == 2)
+                             <div>Доставка</div>
+                         @elseif($order->status == 3)
+                            <div>Готово</div>
                      @endif
 
                  </td>

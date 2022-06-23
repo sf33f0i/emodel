@@ -28,10 +28,15 @@
                 @else
                     <a class="a" href="{{route('orders')}}"><span class="text_nav">Заказы</span></a>
                 @endif
-                @if(\Illuminate\Support\Facades\Route::currentRouteName()=='admin_components_all8')
+                @if(\Illuminate\Support\Facades\Route::currentRouteName()=='messages')
+                    <div class="active_a"><div class="text_nav">Сообщения</div></div>
+                @else
+                    <a class="a" href="{{route('messages')}}"><span class="text_nav">Сообщения</span></a>
+                @endif
+                @if(\Illuminate\Support\Facades\Route::currentRouteName()=='statistics')
                     <div class="active_a"><span class="text_nav">Статистика</span></div>
                 @else
-                    <a class="a" href="{{route('admin_components_all')}}"><span class="text_nav">Статистика</span></a>
+                    <a class="a" href="{{route('statistics')}}"><span class="text_nav">Статистика</span></a>
                 @endif
             </div>
         </div>
@@ -42,6 +47,13 @@
                     <div class="active_a"><div class="text_nav">Главная страница</div></div>
                 @else
                     <a class="a" href="{{route('banners')}}"><span class="text_nav">Главная страница</span></a>
+                @endif
+            </div>
+            <div class="open_menu" id="open_menu">
+                @if(\Illuminate\Support\Facades\Route::currentRouteName()=='works')
+                    <div class="active_a"><div class="text_nav">Наши работы</div></div>
+                @else
+                    <a class="a" href="{{route('works')}}"><span class="text_nav">Наши работы</span></a>
                 @endif
             </div>
         </div>

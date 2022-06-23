@@ -25,18 +25,18 @@
                         Навигация
                     </span>
                 <div class="footer_a">
-                    <a class="navigation_footer_point">Главная</a>
-                    <a class="navigation_footer_point">Наши работы</a>
-                    <a class="navigation_footer_point">Каталог</a>
+                    <a class="navigation_footer_point" href="{{route('home_client')}}">Главная</a>
+                    <a class="navigation_footer_point" href="">Наши работы</a>
+                    <a class="navigation_footer_point"  href="{{route('catalog')}}">Каталог</a>
                     <a class="navigation_footer_point">Контакты</a>
                 </div>
             </div>
             <div class="footer_nav3">
                 <span class="contacts_text">Контакты</span>
                 <div class="contacts_img">
-                    <a><img src="{{url('/storage/homepage/vk.png')}}"> </a>
-                    <a><img src="{{url('/storage/homepage/wat.png')}}"> </a>
-                    <a><img src="{{url('/storage/homepage/mail.png')}}"> </a>
+                    <a href="https://vk.com/emodul96"><img src="{{url('/storage/homepage/vk.png')}}"> </a>
+                    <a href="https://api.whatsapp.com/send/?phone=79827621556&text&app_absent=0"><img src="{{url('/storage/homepage/wat.png')}}"> </a>
+                    <a href="mailto:emodul57@gmail.com"><img src="{{url('/storage/homepage/mail.png')}}"> </a>
                 </div>
             </div>
         </div>

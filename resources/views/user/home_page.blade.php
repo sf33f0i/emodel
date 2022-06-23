@@ -51,7 +51,7 @@
                     <span class="text_big_card">Бытовки</span>
                     <span class="text_medium_card">Вспомогательное помещение используемого для бытовых нужд на предприятиях, стройках, дачных участках в качестве временного жилья, для хранения инструментов и инвентаря.</span>
                     <div class="button_card_home">
-                        <a class="a_card_home">Перейти</a>
+                        <a class="a_card_home" href="{{route('catalog')}}">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <span class="text_big_card">Посты охраны</span>
                     <span class="text_medium_card">Помещение используемое для нахохдения в них сотрудников охраны, специального оборудования и всех необходимых вещей.</span>
                     <div class="button_card_home">
-                        <a class="a_card_home">Перейти</a>
+                        <a class="a_card_home" href="{{route('catalog')}}">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                     <span class="text_big_card">Модульные дома</span>
                     <span class="text_medium_card">Это сборная конструкция, состоящая из отдельных секций деревянного бруса или металла, которые производятся на заводах и поставляются на место строительства в уже готовом виде</span>
                     <div class="button_card_home">
-                        <a class="a_card_home">Перейти</a>
+                        <a class="a_card_home" href="{{route('catalog')}}">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     <span class="text_big_card">Гаражи</span>
                     <span class="text_medium_card">Это сборная конструкция, состоящая из отдельных секций деревянного бруса или металла, которые производятся на заводах и поставляются на место строительства в уже готовом виде</span>
                     <div class="button_card_home">
-                        <a class="a_card_home">Перейти</a>
+                        <a class="a_card_home" href="{{route('catalog')}}">Перейти</a>
                     </div>
                 </div>
             </div>

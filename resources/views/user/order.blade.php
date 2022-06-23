@@ -93,7 +93,14 @@
                 <div style="width: 100%;height: 1px; background-color: #1b1e21;padding: 0px"></div>
                 @foreach($basket as $product)
                     <div class="your_order_product">
-                        <span style="margin-right: 50px; width: 33%">{{$product->product_card->name}} </span>
+                        <span style="margin-right: 50px; width: 33%; display: flex;flex-direction: column">
+                            {{$product->product_card->name}}
+                            @if(isset($product->option))
+                            <span style="font-size: 14px; font-family: 'MontserratSemiBold',serif">
+                                Вариант: {{$product->option}}
+                            </span>
+                            @endif
+                        </span>
                         <span style="margin-right: 50px; width: 33%">Кол-во: {{$product->quantity}} </span>
                         <span style="width: 33%">{{number_format($product->product_card->price * $product->quantity, 0, ',', ' ')}} ₽</span>
                     </div>

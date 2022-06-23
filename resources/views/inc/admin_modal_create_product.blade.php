@@ -55,9 +55,6 @@
                     Выберите изображение для товара.
                 </div>
             </div>
-            <div class="input-group mb-3">
-                <input type="file" name="images[]" multiple="multiple">
-            </div>
             <input type="submit" value="Создать" name="submit" class="btn btn-primary">
         </form>
     </div>

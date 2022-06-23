@@ -13,6 +13,7 @@
                         <th scope="col"><span style="margin-left: 30px">Продукт</span></th>
                         <th scope="col"> </th>
                         <th scope="col">Параметры</th>
+                        <th scope="col">Вариант</th>
                         <th scope="col">Количество</th>
                         <th scope="col">Цена</th>
                         <th scope="col"> </th>
@@ -24,6 +25,16 @@
                         <td><img src="{{url('storage/'.$product->product_card->image)}}" width="300px"></td>
                         <td style="font-size: 24px; font-family: 'Montserrat',serif;">{{$product->product_card->name}}</td>
                         <td class="td_basket"> {{$product->product_card->width}}x{{$product->product_card->height}}</td>
+                        <td style="font-size: 18px; text-align: center;font-family: 'Montserrat',serif; vertical-align: middle">
+                            @if((\App\Models\Basket::option($product)))
+                            <a data-fancybox="gallery"
+                               data-caption="{{$product->name}}" class="grouped_elements" rel="group1" href="{{url('storage/'.\App\Models\Basket::option($product))}}">
+                                <img src="{{url('storage/'.\App\Models\Basket::option($product))}}" width="200px"  alt=""/>
+                            </a>
+                            @else
+                                <span>Отсутсвует</span>
+                            @endif
+                        </td>
                         <td class="td_basket">
                             <div class="quantity">
                                 <form method="POST" action="{{route('minus_count', $product->id)}}">

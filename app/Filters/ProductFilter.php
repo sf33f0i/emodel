@@ -22,7 +22,9 @@ class ProductFilter extends \App\Filters\QueryFilter
             $query->where('components.id', '=', $param);
         });
     }
-
+    public function type($param){
+        return $this->builder->where('type', '=', $param);
+    }
     public function materials2($param)
     {
         return $this->builder->whereHas('components', function (\Illuminate\Database\Eloquent\Builder $query) use ($param) {
